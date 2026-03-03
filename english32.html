@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小学生英语三下电子版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .category {
+            margin-bottom: 40px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .category h2 {
+            color: #4ecdc4;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .unit {
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ff6b6b;
+            transition: all 0.3s ease;
+        }
+
+        .unit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .unit h3 {
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .audio-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .audio-item {
+            flex: 1 1 200px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #f8f9fa;
+        }
+
+        .audio-item:hover {
+            border-color: #4ecdc4;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .audio-item h4 {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .play-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .play-btn:active {
+            transform: translateY(0);
+        }
+
+        .player {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .category h2 {
+                font-size: 1.5rem;
+            }
+
+            .unit h3 {
+                font-size: 1.3rem;
+            }
+
+            .audio-item {
+                flex: 1 1 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .category {
+                padding: 15px;
+            }
+
+            .unit {
+                padding: 15px;
+            }
+
+            .play-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        /* Tab 样式 */
+        .tab-container {
+            margin-bottom: 40px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .tab-content {
+            display: none;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* 装饰元素 */
+        .decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            transform: rotate(15deg);
+        }
+
+        .decoration-2 {
+            top: 20%;
+            right: 10%;
+            transform: rotate(-10deg);
+        }
+
+        .decoration-3 {
+            bottom: 15%;
+            left: 15%;
+            transform: rotate(5deg);
+        }
+
+        .decoration-4 {
+            bottom: 25%;
+            right: 5%;
+            transform: rotate(-5deg);
+        }
+
+        /* 音频播放层样式 */
+        .audio-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .audio-player-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: bounce 0.5s ease;
+        }
+
+        .audio-player-container h3 {
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .audio-title {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .audio-player-container audio {
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .audio-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .close-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 480px) {
+            .audio-player-container {
+                padding: 20px;
+            }
+
+            .audio-player-container h3 {
+                font-size: 1.3rem;
+            }
+
+            .audio-title {
+                font-size: 1rem;
+            }
+
+            .control-btn,
+            .close-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .audio-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .audio-controls button {
+                width: 80%;
+            }
+        }
+
+        /* 视频播放层样式 */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .video-player-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: bounce 0.5s ease;
+        }
+
+        .video-player-container h3 {
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .video-title {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .video-player-container video {
+            width: 100%;
+            max-height: 400px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .video-player-container {
+                max-width: 95%;
+                padding: 20px;
+            }
+
+            .video-player-container video {
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-player-container {
+                padding: 15px;
+            }
+
+            .video-player-container h3 {
+                font-size: 1.3rem;
+            }
+
+            .video-title {
+                font-size: 1rem;
+            }
+
+            .video-player-container video {
+                max-height: 200px;
+            }
+
+            .video-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .video-controls button {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorations">
+        <div class="decoration decoration-1">🌟</div>
+        <div class="decoration decoration-2">🎈</div>
+        <div class="decoration decoration-3">🎯</div>
+        <div class="decoration decoration-4">✨</div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>🎒 小学生英语三下电子版 🎒</h1>
+            <p class="subtitle">跟着音频一起学习英语吧！</p>
+        </header>
+
+        <!-- Tab 切换 -->
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('reading')">📚 课文录音</button>
+                <button class="tab-btn" onclick="switchTab('chunks')">📝 语块</button>
+                <button class="tab-btn" onclick="switchTab('videos')">🎵 单词拼读视频</button>
+            </div>
+
+            <!-- 课文录音 Tab -->
+            <div id="reading" class="tab-content active">
+                <div class="unit">
+                    <h3>Unit 1</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>三下U1课文录音</h4>
+                            <button class="play-btn" onclick="playAudio('english32/reading/U1_reading.mp3')">播放</button>
+                            <audio class="player" id="audio-player"></audio>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 2</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>三下U2课文录音</h4>
+                            <button class="play-btn" onclick="playAudio('english32/reading/U2reading.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 3</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>三下U3课文录音</h4>
+                            <button class="play-btn" onclick="playAudio('english32/reading/U3reading.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 4</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>三下U4课文录音</h4>
+                            <button class="play-btn" onclick="playAudio('english32/reading/U4reading.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 5</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>三下U5课文录音</h4>
+                            <button class="play-btn" onclick="playAudio('english32/reading/U5reading.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 6</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>三下U6课文录音</h4>
+                            <button class="play-btn" onclick="playAudio('english32/reading/U6reading.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 7</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>三下U7课文录音</h4>
+                            <button class="play-btn" onclick="playAudio('english32/reading/U7reading.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 8</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>三下U8课文录音</h4>
+                            <button class="play-btn" onclick="playAudio('english32/reading/U8reading.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 语块 Tab -->
+            <div id="chunks" class="tab-content">
+                <div class="unit">
+                    <h3>Unit 1</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U1 语块</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U1_chunks.mp3')">播放</button>
+                        </div>
+                        <div class="audio-item">
+                            <h4>U1 语块和句型</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U1_chunks_sentences.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 2</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U2 语块</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U2_chunks.mp3')">播放</button>
+                        </div>
+                        <div class="audio-item">
+                            <h4>U2 语块和句型</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U2_chunks_sentences.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 3</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U3 语块</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U3_chunks.mp3')">播放</button>
+                        </div>
+                        <div class="audio-item">
+                            <h4>U3 语块和句型</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U3_chunks_sentences.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 4</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U4 语块</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U4_chunks.mp3')">播放</button>
+                        </div>
+                        <div class="audio-item">
+                            <h4>U4 语块和句型</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U4_chunks_sentences.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 5</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U5 语块</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U5_chunks.mp3')">播放</button>
+                        </div>
+                        <div class="audio-item">
+                            <h4>U5 语块和句型</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U5_chunks_sentences.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 6</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U6 语块</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U6_chunks.mp3')">播放</button>
+                        </div>
+                        <div class="audio-item">
+                            <h4>U6 语块和句型</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U6_chunks_sentences.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 7</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U7 语块</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U7_chunks.mp3')">播放</button>
+                        </div>
+                        <div class="audio-item">
+                            <h4>U7 语块和句型</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U7_chunks_sentences.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 8</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U8 语块</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U8_chunks.mp3')">播放</button>
+                        </div>
+                        <div class="audio-item">
+                            <h4>U8 语块和句型</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/U8_chunks_sentences.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Review</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>Review 语块和句型</h4>
+                            <button class="play-btn" onclick="playAudio('english32/chunks/Review_chunks.mp3')">播放</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 单词拼读视频 Tab -->
+            <div id="videos" class="tab-content">
+                <div class="unit">
+                    <h3>Unit 1</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U1 单词</h4>
+                            <button class="play-btn" onclick="playVideo('english32/words/U1_words.mp4')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 2</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U2 单词</h4>
+                            <button class="play-btn" onclick="playVideo('english32/words/U2_words.mp4')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 3</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U3 单词</h4>
+                            <button class="play-btn" onclick="playVideo('english32/words/U3_words.mp4')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 4</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U4 单词</h4>
+                            <button class="play-btn" onclick="playVideo('english32/words/U4_words.mp4')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 5</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U5 单词</h4>
+                            <button class="play-btn" onclick="playVideo('english32/words/U5_words.mp4')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 6</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U6 单词</h4>
+                            <button class="play-btn" onclick="playVideo('english32/words/U6_words.mp4')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 7</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U7 单词</h4>
+                            <button class="play-btn" onclick="playVideo('english32/words/U7_words.mp4')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Unit 8</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>U8 单词</h4>
+                            <button class="play-btn" onclick="playVideo('english32/words/U8_words.mp4')">播放</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit">
+                    <h3>Review</h3>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <h4>Review 单词</h4>
+                            <button class="play-btn" onclick="playVideo('english32/words/Review_words.mp4')">播放</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 小学生英语三下电子版 - 快乐学习，轻松成长！</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentAudio = null;
+        let currentVideo = null;
+
+        function playAudio(src) {
+            // 停止当前播放的音频
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            // 创建音频播放层
+            const audioOverlay = document.createElement('div');
+            audioOverlay.className = 'audio-overlay';
+            audioOverlay.innerHTML = `
+                <div class="audio-player-container">
+                    <h3>🎵 音频播放</h3>
+                    <p class="audio-title">${src.split('/').pop().replace('.MP3', '').replace('.mp3', '')}</p>
+                    <audio id="overlay-audio" controls autoplay>
+                        <source src="${src}" type="audio/mpeg">
+                        您的浏览器不支持音频播放。
+                    </audio>
+                    <div class="audio-controls">
+                        <button id="audio-pause-btn" class="control-btn" onclick="pauseAudio()">⏸ 暂停</button>
+                        <button id="audio-play-btn" class="control-btn" onclick="resumeAudio()" style="display: none;">▶ 播放</button>
+                        <button class="close-btn" onclick="closeAudioOverlay()">✕ 关闭</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(audioOverlay);
+
+            // 创建音频元素
+            const audio = document.getElementById('overlay-audio');
+            audio.play().catch(error => {
+                console.error('播放失败:', error);
+                alert('播放失败，请检查文件路径或浏览器设置');
+                closeAudioOverlay();
+            });
+
+            currentAudio = audio;
+        }
+
+        function pauseAudio() {
+            if (currentAudio) {
+                currentAudio.pause();
+                document.getElementById('audio-pause-btn').style.display = 'none';
+                document.getElementById('audio-play-btn').style.display = 'inline-block';
+            }
+        }
+
+        function resumeAudio() {
+            if (currentAudio) {
+                currentAudio.play();
+                document.getElementById('audio-pause-btn').style.display = 'inline-block';
+                document.getElementById('audio-play-btn').style.display = 'none';
+            }
+        }
+
+        function closeAudioOverlay() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
+            }
+            const overlay = document.querySelector('.audio-overlay');
+            if (overlay) {
+                overlay.remove();
+            }
+        }
+
+        function playVideo(src) {
+            // 停止当前播放的视频
+            if (currentVideo) {
+                currentVideo.pause();
+                currentVideo.currentTime = 0;
+            }
+
+            // 创建视频播放层
+            const videoOverlay = document.createElement('div');
+            videoOverlay.className = 'video-overlay';
+            videoOverlay.innerHTML = `
+                <div class="video-player-container">
+                    <h3>🎵 单词拼读视频</h3>
+                    <p class="video-title">${src.split('/').pop().replace('.mp4', '')}</p>
+                    <video id="overlay-video" controls autoplay>
+                        <source src="${src}" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                     </video>
+                    <div class="video-controls">
+                        <button id="video-pause-btn" class="control-btn" onclick="pauseVideo()">⏸ 暂停</button>
+                        <button id="video-play-btn" class="control-btn" onclick="resumeVideo()" style="display: none;">▶ 播放</button>
+                        <button class="control-btn" onclick="toggleFullscreen()">⛶ 全屏</button>
+                        <button class="close-btn" onclick="closeVideoOverlay()">✕ 关闭</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(videoOverlay);
+
+            // 获取视频元素
+            const video = document.getElementById('overlay-video');
+            video.play().catch(error => {
+                console.error('播放失败:', error);
+                alert('播放失败，请检查文件路径或浏览器设置');
+                closeVideoOverlay();
+            });
+
+            currentVideo = video;
+        }
+
+        function pauseVideo() {
+            if (currentVideo) {
+                currentVideo.pause();
+                document.getElementById('video-pause-btn').style.display = 'none';
+                document.getElementById('video-play-btn').style.display = 'inline-block';
+            }
+        }
+
+        function resumeVideo() {
+            if (currentVideo) {
+                currentVideo.play();
+                document.getElementById('video-pause-btn').style.display = 'inline-block';
+                document.getElementById('video-play-btn').style.display = 'none';
+            }
+        }
+
+        function closeVideoOverlay() {
+            if (currentVideo) {
+                currentVideo.pause();
+                currentVideo.currentTime = 0;
+                currentVideo = null;
+            }
+            const overlay = document.querySelector('.video-overlay');
+            if (overlay) {
+                overlay.remove();
+            }
+        }
+
+        function toggleFullscreen() {
+            const video = document.getElementById('overlay-video');
+            if (!document.fullscreenElement) {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.mozRequestFullScreen) {
+                    video.mozRequestFullScreen();
+                } else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) {
+                    video.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        // Tab 切换功能
+        function switchTab(tabId) {
+            // 隐藏所有内容
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 移除所有Tab按钮的active类
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 显示选中的内容和按钮
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+
+            // 添加页面加载动画
+            const units = document.querySelectorAll(`#${tabId} .unit`);
+            units.forEach((unit, index) => {
+                setTimeout(() => {
+                    unit.style.opacity = '0';
+                    unit.style.transform = 'translateY(20px)';
+                    unit.style.transition = 'all 0.5s ease';
+                    setTimeout(() => {
+                        unit.style.opacity = '1';
+                        unit.style.transform = 'translateY(0)';
+                    }, 50);
+                }, index * 100);
+            });
+        }
+
+        // 添加页面加载动画
+        window.addEventListener('load', function() {
+            const units = document.querySelectorAll('.unit');
+            units.forEach((unit, index) => {
+                setTimeout(() => {
+                    unit.style.opacity = '0';
+                    unit.style.transform = 'translateY(20px)';
+                    unit.style.transition = 'all 0.5s ease';
+                    setTimeout(() => {
+                        unit.style.opacity = '1';
+                        unit.style.transform = 'translateY(0)';
+                    }, 50);
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
