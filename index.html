@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小学英语学习游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>🌟 小学英语学习游戏 🌟</h1>
+            <div class="score-board">
+                <span>得分: <span id="score">0</span></span>
+                <span>关卡: <span id="level">1</span></span>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <div id="game-start" class="game-screen active">
+                <h2>欢迎来到英语学习游戏！</h2>
+                <p>选择一个游戏模式开始吧！</p>
+                <div class="mode-buttons">
+                    <button id="start-words" class="mode-btn">单词配对</button>
+                    <button id="start-listening" class="mode-btn">听力练习</button>
+                    <button id="start-quiz" class="mode-btn">知识测验</button>
+                </div>
+            </div>
+
+            <div id="game-words" class="game-screen">
+                <h2>🎯 单词配对游戏</h2>
+                <p>将英语单词与正确的中文意思配对</p>
+                <div class="game-content">
+                    <div class="words-container">
+                        <div class="words-list" id="english-words"></div>
+                        <div class="words-list" id="chinese-words"></div>
+                    </div>
+                    <div class="game-controls">
+                        <button id="back-to-menu" class="control-btn">返回菜单</button>
+                        <button id="next-round" class="control-btn">下一轮</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="game-listening" class="game-screen">
+                <h2>👂 听力练习游戏</h2>
+                <p>听单词发音，选择正确的选项</p>
+                <div class="game-content">
+                    <div class="listening-container">
+                        <button id="play-audio" class="audio-btn">🔊 播放音频</button>
+                        <div class="options-list" id="listening-options"></div>
+                    </div>
+                    <div class="game-controls">
+                        <button id="back-to-menu-2" class="control-btn">返回菜单</button>
+                        <button id="next-audio" class="control-btn">下一题</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="game-quiz" class="game-screen">
+                <h2>📝 知识测验游戏</h2>
+                <p>回答英语知识问题</p>
+                <div class="game-content">
+                    <div class="quiz-container">
+                        <div id="quiz-question" class="quiz-question"></div>
+                        <div class="options-list" id="quiz-options"></div>
+                    </div>
+                    <div class="game-controls">
+                        <button id="back-to-menu-3" class="control-btn">返回菜单</button>
+                        <button id="next-question" class="control-btn">下一题</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="game-over" class="game-screen">
+                <h2>🎉 游戏结束！</h2>
+                <div class="final-score">
+                    <p>你的最终得分: <span id="final-score">0</span></p>
+                    <p>完成关卡: <span id="final-level">1</span></p>
+                </div>
+                <button id="play-again" class="play-again-btn">再玩一次</button>
+                <button id="back-to-menu-4" class="control-btn">返回菜单</button>
+            </div>
+        </main>
+
+        <footer class="game-footer">
+            <p>© 2026 小学英语学习游戏 - 快乐学习，轻松成长！</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
